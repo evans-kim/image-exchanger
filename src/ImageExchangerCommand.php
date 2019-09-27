@@ -261,12 +261,7 @@ class ImageExchangerCommand extends Command
      */
     protected function getCollection()
     {
-        if( $this->config['eloquent'] !== false && is_callable($this->config['eloquent']) ){
-            return $this->config['eloquent']();
-        }else{
-            return DB::table($this->config['table'])->get();
-        }
-
+        return DB::table($this->config['table'])->get();
     }
     /**
      * @param $item
