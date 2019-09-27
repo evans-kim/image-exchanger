@@ -86,7 +86,7 @@ class ImageExchangerCommand extends Command
      */
     protected function moveFileToStorage()
     {
-        Excel::load(storage_path('/temp/product_images.xls'))->get()->map(function ($item) {
+        Excel::load(storage_path('/temp/extracts.xls'))->get()->map(function ($item) {
 
             if ($this->isSkipCopy($item)) {
                 // 이미 스토리지 안에 들어간 이미지는 스킵합니다.
@@ -111,7 +111,7 @@ class ImageExchangerCommand extends Command
             // 키값, 타겟, 새로운 값, 적용되는 상품 아이디
             $this->results[] = [$item[3], $item[0], $newUrl, implode(",", $item[2])];
         });
-        Excel::create('product_images_success', function ($excel) {
+        Excel::create('success', function ($excel) {
 
             $excel->sheet('Sheet1', function ($sheet) {
 
@@ -120,8 +120,8 @@ class ImageExchangerCommand extends Command
             });
 
         })->store('xls', storage_path('/temp'));
-        $this->info("product_images_success.xls created");
-        Excel::create('product_images_fails', function ($excel) {
+        $this->info("success.xls created");
+        Excel::create('fail', function ($excel) {
 
             $excel->sheet('Sheet1', function ($sheet) {
 
@@ -130,7 +130,7 @@ class ImageExchangerCommand extends Command
             });
 
         })->store('xls', storage_path('/temp'));
-        $this->info("product_images_fails created");
+        $this->info("fail.xls created");
     }
     /**
      * 엑셀파일에 파일 이동에 성공한 데이터만 상세 내역에서 해당 링크를 변경합니다.
@@ -139,7 +139,7 @@ class ImageExchangerCommand extends Command
     {
         $products = $this->getCollectionByPrimary();
         // 상품상세내역에서 이미지 뽑아 내기
-        Excel::load(storage_path('/temp/product_images_success.xls'))->get()->map(function ($item) use ($products) {
+        Excel::load(storage_path('/temp/success.xls'))->get()->map(function ($item) use ($products) {
             /**
              * @var $item array [ 키값, 타겟, 새로운 값, 적용되는 상품 아이디]
              */
@@ -155,7 +155,7 @@ class ImageExchangerCommand extends Command
         $this->saveExchangedData($products);
     }
 
-    protected function exportToExcel($name = 'product_images')
+    protected function exportToExcel($name = 'extracts')
     {
         Excel::create($name, function ($excel) {
 

@@ -10,7 +10,7 @@ class ImageExchangerServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/image-exchanger.php' => config_path('image-exchanger.php'),
-        ]);
+        ], 'image-exchanger');
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ImageExchangerCommand::class
