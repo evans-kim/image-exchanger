@@ -7,7 +7,7 @@ Extract Images from HTML code in database data field and Exchange image url from
 
 ## How to install
 
-    composer require evanskim/image-exchanger:dev-master
+    composer require evanskim/image-exchanger
 
 ## How to use
 라라벨 5.4 이하 버전에서는 서비스프로바이더를 등록하세요. 5.5 이상은 자동 등록됩니다.
