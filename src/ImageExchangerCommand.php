@@ -200,7 +200,7 @@ class ImageExchangerCommand extends Command
      */
     protected function getContent($product)
     {
-        $contents = $product->it_explan;
+        $contents = $product->{$this->config['field']};
         return $contents;
     }
     /**
@@ -209,7 +209,7 @@ class ImageExchangerCommand extends Command
      */
     protected function getPrimary($product)
     {
-        return $product->it_id;
+        return $product->{$this->config['primary_id']};
     }
     protected function getProductDetailImages($isStacked = null)
     {
