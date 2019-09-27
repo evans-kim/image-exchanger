@@ -5,6 +5,10 @@ Extract Images from HTML code in database data field and Exchange image url from
 이 패키지는 추출한 이미지를 엑셀파일로 덤프합니다. 덤프한 엑셀 파일을 조작하여 커스터마이즈할 수 있습니다. 
 중간에 작업이 실패해도 엑셀파일을 수정하여 재수행할 수 있습니다.
 
+## How to install
+
+    composer require evanskim/image-exchanger dev-master
+
 ## How to use
 라라벨 5.4 이하 버전에서는 서비스프로바이더를 등록하세요. 5.5 이상은 자동 등록됩니다.
     
